@@ -17,7 +17,7 @@ class CreateAudioConvertResultsTable extends Migration
             $table->increments('id');
             $table->integer('audio_file_id')->unsigned();
             $table->foreign('audio_file_id')->references('id')->on('audio_files')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->text('result_convert');
+            $table->text('result_convert')->nullable();
             $table->timestamps();
         });
     }
