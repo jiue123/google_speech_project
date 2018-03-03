@@ -18,8 +18,8 @@ class CreateAudioFilesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->string('name');
-            $table->string('path');
-            $table->string('path_flac');
+            $table->string('path')->nullable();
+            $table->string('path_flac')->nullable();
             $table->timestamps();
         });
     }
