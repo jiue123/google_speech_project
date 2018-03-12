@@ -17,5 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('audio', 'AudioController', ['only' => ['index', 'store']]);
-Route::get('listConvert', 'ListConvertController@index')->name('listConvert.index');
+
+Route::group([
+    'middleware' => 'auth',
+    'prefix'     => 'admin',
+    'as'         => 'admin.',
+    'namespace'  => 'Audio'
+], function () {
+    Route::resource('audio', 'AudioController', ['only' => ['index', 'store']]);
+    Route::get('listConvert', 'ListConvertController@index')->name('listConvert.index');
+});

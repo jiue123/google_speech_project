@@ -177,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Azure Service Providers
+        Ijin82\Flysystem\Azure\AzureBlobServiceProvider::class,
     ],
 
     /*

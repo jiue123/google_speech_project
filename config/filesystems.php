@@ -62,7 +62,12 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
-
+        'azure' => [
+            'driver' => 'azure_blob',
+            'endpoint' => env('AZURE_BLOB_STORAGE_ENDPOINT'),
+            'container' => env('AZURE_BLOB_STORAGE_CONTAINER'),
+            'blob_service_url' => env('AZURE_BLOB_SERVICE_URL'),
+        ],
     ],
 
 ];

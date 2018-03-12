@@ -1,11 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Audio;
 
+use Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Traits\GoogleSpeech\GoogleSpeech;
 
 class AudioController extends Controller
 {
+    use GoogleSpeech;
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,18 @@ class AudioController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        if ($request->hasFile('audio')) {
+            $user = User::find(Auth::user()->id);
+
+            \DB::beginTransaction();
+
+            if ($this->googleSpeechConvert($request, $user)){
+                \Log::info('Convert Audio Success!');
+                \DB::commit();
+            } else {
+                \DB::rollBack();
+            }
+        }
     }
 
     /**
@@ -81,4 +98,5 @@ class AudioController extends Controller
     {
         //
     }
+
 }

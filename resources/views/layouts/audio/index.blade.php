@@ -9,6 +9,6 @@
         </div>
     </div>
     <script>
-        var audioUploadUrl = "{{ route('audio.store') }}";
+        var audioUploadUrl = "{{ route('admin.audio.store') }}";
     </script>
 @endsection
