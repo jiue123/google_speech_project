@@ -56,6 +56,7 @@ trait GoogleSpeech
 
     protected function convertAudio(array $arrCloudURL, $audioObj = '')
     {
+        $transcript = [];
         # Instantiates a client
         $speech = $this->googleSpeechClient();
 
