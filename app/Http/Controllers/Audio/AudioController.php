@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Audio;
 
+use Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Traits\GoogleSpeech\ConvertAudio;
-use App\Traits\SaveFile\SaveFile;
-use Google\Cloud\Speech\SpeechClient;
+use App\Traits\GoogleSpeech\GoogleSpeech;
 
 class AudioController extends Controller
 {
-    use ConvertAudio, SaveFile;
+    use GoogleSpeech;
 
     /**
      * Display a listing of the resource.
@@ -40,34 +40,18 @@ class AudioController extends Controller
      */
     public function store(Request $request)
     {
-        $files = $request->file('audio');
-        foreach ($files as $file) {
-            return response()->json($file->extension());
+        if ($request->hasFile('audio')) {
+            $user = User::find(Auth::user()->id);
+
+            \DB::beginTransaction();
+
+            if ($this->googleSpeechConvert($request, $user)){
+                \Log::info('Convert Audio Success!');
+                \DB::commit();
+            } else {
+                \DB::rollBack();
+            }
         }
-//        if ($request->hasFile('audio')) {
-//            $files = $this->SaveFile($request);
-//            $this->convertAudio();
-//        }
-//
-//        # Instantiates a client
-//        $speech = new SpeechClient([
-//            'keyFile' => config('google.key_file'),
-//            'projectId' => config('google.project_id'),
-//            'languageCode' => 'en-US',
-//        ]);
-//
-//        # The name of the audio file to transcribe
-//        $fileName = __DIR__ . '/resources/audio.raw';
-//
-//        # The audio file's encoding and sample rate
-//        $options = config('google.google_speech_options_convert.wav');
-//
-//        # Detects speech in the audio file
-//        $results = $speech->recognize(fopen($fileName, 'r'), $options);
-//
-//        foreach ($results as $result) {
-//            echo 'Transcription: ' . $result->alternatives()[0]['transcript'] . PHP_EOL;
-//        }
     }
 
     /**

@@ -19,6 +19,7 @@ Auth::routes();
 
 
 Route::group([
+    'middleware' => 'auth',
     'prefix'     => 'admin',
     'as'         => 'admin.',
     'namespace'  => 'Audio'

@@ -14,8 +14,4 @@ $("#audio-input").fileinput({
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   }
-}).on('fileuploaded', function(event, data, previewId, index) {
-  var form = data.form, files = data.files, extra = data.extra,
-    response = data.response, reader = data.reader;
-  console.log('File uploaded triggered');
 });
