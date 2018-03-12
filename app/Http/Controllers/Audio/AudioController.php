@@ -48,8 +48,10 @@ class AudioController extends Controller
             if ($this->googleSpeechConvert($request, $user)){
                 \Log::info('Convert Audio Success!');
                 \DB::commit();
+                return response()->json('Convert Audio Success!');
             } else {
                 \DB::rollBack();
+                return response()->json('Convert Audio Error!');
             }
         }
     }
