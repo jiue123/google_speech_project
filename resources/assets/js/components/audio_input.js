@@ -1,7 +1,6 @@
-import $ from 'jquery';
 import 'bootstrap-fileinput';
 
-const uploadUrl = audioUploadUrl;
+const uploadUrl = typeof audioUploadUrl !== 'undefined' ? audioUploadUrl : '';
 
 $("#audio-input").fileinput({
   theme: "fa",

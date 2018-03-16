@@ -19,11 +19,15 @@ Auth::routes();
 
 
 Route::group([
-    'middleware' => 'auth',
+    'middleware' => ['auth'],
     'prefix'     => 'admin',
     'as'         => 'admin.',
     'namespace'  => 'Audio'
 ], function () {
     Route::resource('audio', 'AudioController', ['only' => ['index', 'store']]);
-    Route::get('listConvert', 'ListConvertController@index')->name('listConvert.index');
+    Route::resource('listConvert', 'ListConvertController');
+    Route::delete('listConvert/{id}/destroy', [
+        'uses' => 'ListConvertController@destroy',
+        'as' => 'listConvert.destroy',
+    ]);
 });

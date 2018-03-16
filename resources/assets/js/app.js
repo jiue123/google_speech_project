@@ -4,7 +4,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+import $ from 'jquery';
 require('./bootstrap');
 
 // window.Vue = require('vue');
@@ -24,4 +24,7 @@ require('./bootstrap');
 
 $(document).ready(() => {
   require('./components/audio_input');
+  if ($('.container-result-convert').length > 0) {
+    require('./components/result_convert');
+  }
 });
