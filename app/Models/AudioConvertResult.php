@@ -16,6 +16,6 @@ class AudioConvertResult extends Model
 
     public function audioFile()
     {
-        return $this->hasOne(AudioFile::class);
+        return $this->belongsTo(AudioFile::class);
     }
 }

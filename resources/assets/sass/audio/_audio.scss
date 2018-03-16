@@ -1,6 +1,234 @@
-.container-upload{
+.container-upload {
   background-color: #ffffff;
   .row{
     padding: 30px;
+  }
+  a {
+    color: inherit;
+  }
+}
+
+.container-result-convert {
+  a:hover {
+    color: #3097D1;
+  }
+  #filterForm {
+    .input-group {
+      float: left;
+    }
+    .filterFrom, .filterTo, button {
+      margin-right: 10px;
+
+      .form-control {
+        height: 30px;
+      }
+
+      .input-group-addon {
+        width: 60px;
+        font-weight: bold;
+      }
+    }
+    button {
+      height: 30px;
+      padding: 2px 12px;
+    }
+  }
+
+  .table-striped {
+    border-bottom-color: #dddddd !important;
+    th {
+      border-bottom: 0;
+    }
+    td {
+      padding-bottom: 0;
+      textarea {
+        resize: vertical;
+        background: #ffffff;
+      }
+    }
+  }
+
+  .action-column {
+    a {
+      margin-right: 4px;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 0;
+
+    i {
+      cursor: pointer;
+      margin-top: 4px;
+      margin-left: 4px;
+    }
+  }
+
+  .modal-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+  }
+
+  .modal-content {
+    .close {
+      padding: 1rem;
+      margin: -1rem -1rem -1rem auto;
+      float: right;
+      font-size: 2.5rem;
+      line-height: 1;
+      color: #000;
+      text-shadow: 0 1px 0 #fff;
+      opacity: .5;
+    }
+
+    .close:hover {
+      color: #3097D1;
+    }
+  }
+
+  .modal-body {
+    display: flex;
+  }
+
+  .result-convert-pagination {
+    float: right;
+
+    ul li span,a {
+      padding: 4px 12px;
+    }
+  }
+}
+
+.container-result-convert-edit {
+  .audio {
+    display: flex;
+    audio {
+      width: 100%;
+    }
+  }
+  button {
+    padding: 6px 30px;
+  }
+}
+
+.customize-success {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  opacity: 0;
+  font-weight: bold;
+  width: 100%;
+  top: 25%;
+}
+
+.animation-opacity {
+  -webkit-animation-name: animation-opacity; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 2.7s; /* Safari 4.0 - 8.0 */
+  animation-name: animation-opacity;
+  animation-duration: 2.7s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes animation-opacity {
+  from {
+    opacity: 1;
+    top: 25%;
+  }
+  to {
+    opacity: 0;
+    top: 0;
+  }
+}
+
+/* Standard syntax */
+@keyframes animation-opacity {
+  from {
+    opacity: 1;
+    top: 25%;
+  }
+  to {
+    opacity: 0;
+    top: 0;
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  #filterForm {
+    .filterFrom {
+      margin-right: 0 !important;
+    }
+    .filterFrom, .filterTo{
+      margin-bottom: 6px;
+    }
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .container-result-convert {
+    .table-striped {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 401px) {
+  .container-result-convert {
+    table {
+      border: 0;
+      padding-top: 20px;
+      border-bottom: 0 !important;
+      caption {
+        font-size: 1.3em;
+      }
+      thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+      tr {
+        border: 1px solid #dddddd;
+        border-top: 0;
+        display: block;
+        margin-bottom: .625em;
+      }
+      td {
+        display: block;
+        font-size: 1em;
+        text-align: right;
+      }
+      td:before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      td:last-child {
+        border-bottom: 0;
+      }
+    }
   }
 }

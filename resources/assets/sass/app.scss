@@ -9,5 +9,11 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~bootstrap-fileinput/scss/fileinput";
 
+// Datatables
+@import "~datatables.net-dt/css/jquery.dataTables";
+
+//Datetimepicker
+@import "~eonasdan-bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker";
+
 @import
 'audio/audio';
