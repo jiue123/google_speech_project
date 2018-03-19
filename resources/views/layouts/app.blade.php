@@ -44,6 +44,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li @if (url()->current() === route('admin.audio.index')) class="active" @endif>
                                 <a href="{{route('admin.audio.index')}}">Convert Audio</a>
