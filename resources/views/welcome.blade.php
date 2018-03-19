@@ -72,6 +72,7 @@
                         <a href="{{ route('admin.audio.index') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
