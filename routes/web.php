@@ -15,8 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::group([
+    'namespace'  => 'Audio'
+], function () {
+    Route::get('audioRegister', 'RegisterController@showRegistrationForm')->name('audioRegister.index');
+    Route::post('audioRegister', 'RegisterController@register')->name('audioRegister.register');
+});
 
+Auth::routes();
 
 Route::group([
     'middleware' => ['auth'],
