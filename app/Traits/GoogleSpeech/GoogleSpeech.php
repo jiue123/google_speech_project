@@ -67,8 +67,7 @@ trait GoogleSpeech
             $options = config('google.google_speech_options_convert.flac');
         }
 
-        $url = config('filesystems.disks.azure.blob_service_url') . '/' .
-            config('filesystems.disks.azure.container') . '/' . $arrCloudURL['path'];
+        $url = config('filesystems.disks.s3.bucket_url') . $arrCloudURL['path'];
 
         # The audio file to transcribe
         $fileName = fopen($url, 'r');

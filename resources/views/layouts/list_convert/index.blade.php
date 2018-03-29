@@ -37,8 +37,7 @@
                     @php
                         $count = $totalItems * (!isset($_GET['page']) ? 1 : $_GET['page']);
                         $firstOrder = $count - ($totalItems - 1);
-                        $cloudPath = config('filesystems.disks.azure.blob_service_url') . '/' .
-                            config('filesystems.disks.azure.container') . '/';
+                        $cloudPath = config('filesystems.disks.s3.bucket_url');
                     @endphp
                     @foreach ($data as $value)
                         <tr>

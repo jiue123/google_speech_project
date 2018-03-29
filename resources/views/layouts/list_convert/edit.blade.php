@@ -2,8 +2,7 @@
 
 @section('content')
     @php
-        $cloudPath = config('filesystems.disks.azure.blob_service_url') . '/' .
-            config('filesystems.disks.azure.container') . '/';
+        $cloudPath = config('filesystems.disks.s3.bucket_url');
     @endphp
     @if ($message = Session::get('message'))
     <div class="alert alert-success customize-success animation-opacity" role="alert">
