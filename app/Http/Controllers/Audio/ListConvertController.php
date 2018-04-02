@@ -6,8 +6,9 @@ use Auth;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\AudioConvertResult;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ListConvertController extends Controller
 {
@@ -111,6 +112,13 @@ class ListConvertController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = AudioConvertResult::find($id)->load('audioFile');
+        if (Storage::delete($data->audioFile->path)) {
+            $data->delete();
+            return redirect()->route('admin.listConvert.index', $_GET)->with('message', [
+                'value' => 'Delete Success!',
+                'type' => 'success',
+            ]);
+        }
     }
 }

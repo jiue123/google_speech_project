@@ -4,12 +4,7 @@
     @php
         $cloudPath = config('filesystems.disks.s3.bucket_url');
     @endphp
-    @if ($message = Session::get('message'))
-    <div class="alert alert-success customize-success animation-opacity" role="alert">
-        <i class="glyphicon glyphicon-ok"></i>
-        {{$message['value']}}
-    </div>
-    @endif
+    @include('partials.alert')
     <div class="container container-upload container-result-convert-edit">
         <form action="{{route('admin.listConvert.update', ['id' => $data->id])}}" method="post">
             {{ csrf_field() }}

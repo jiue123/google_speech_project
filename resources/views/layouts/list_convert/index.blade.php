@@ -5,6 +5,7 @@
         $dateFrom = isset($_GET['dateFrom']) ? $_GET['dateFrom'] : '';
         $dateTo = isset($_GET['dateTo']) ? $_GET['dateTo'] : '';
     @endphp
+    @include('partials.alert')
     <div class="container container-upload container-result-convert">
         <div class="row">
             <form id="filterForm" action="{{route('admin.listConvert.index')}}" method="get">
@@ -35,9 +36,11 @@
                 </thead>
                 <tbody>
                     @php
-                        $count = $totalItems * (!isset($_GET['page']) ? 1 : $_GET['page']);
+                        $page = !isset($_GET['page']) ? 1 : $_GET['page'];
+                        $count = $totalItems * ($page);
                         $firstOrder = $count - ($totalItems - 1);
                         $cloudPath = config('filesystems.disks.s3.bucket_url');
+                        $page = (count($data) == 1 && $count > $totalItems) ? $page - 1 : $page;
                     @endphp
                     @foreach ($data as $value)
                         <tr>
@@ -72,13 +75,22 @@
                             </td>
                             <td>{{$value->created_at->format('M d Y')}}</td>
                             <td class="action-column" align="right">
-                                <a href="{{route('admin.listConvert.edit', ['id' => $value->id])}}">
-                                    <i class="glyphicon glyphicon-pencil"></i>
-                                </a>
-                                <a href="#"><i class="glyphicon glyphicon-download-alt"></i></a>
-                                <a href="{{route('admin.listConvert.destroy', ['id' => $value->id])}}">
-                                    <i class="glyphicon glyphicon-floppy-remove"></i>
-                                </a>
+                                <form id="deleteForm{{$value->id}}" action="{{route('admin.listConvert.destroy',[
+                                    'id' => $value->id,
+                                    'dateFrom' => $dateFrom,
+                                    'dateTo' => $dateTo,
+                                    'page' => $page,
+                                ])}}" accept-charset="UTF-8" method="POST">
+                                    {{method_field('DELETE')}}
+                                    {{csrf_field()}}
+                                    <a href="{{route('admin.listConvert.edit', ['id' => $value->id])}}">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a href="#"><i class="glyphicon glyphicon-download-alt"></i></a>
+                                    <a href="javascript:void(0)" onclick="confirmDelete({{$value->id}})">
+                                        <i class="glyphicon glyphicon-floppy-remove"></i>
+                                    </a>
+                                </form>
                             </td>
                         </tr>
                         @php
@@ -94,7 +106,12 @@
     </div>
     <script>
         function pause(i) {
-          document.getElementById("audio-" + i).pause();
+            document.getElementById("audio-" + i).pause();
+        }
+        function confirmDelete(i) {
+            if (confirm('Are you sure want to delete?'))
+                document.getElementById("deleteForm" + i).submit();
+            return false;
         }
     </script>
 @endsection

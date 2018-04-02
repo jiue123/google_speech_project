@@ -32,8 +32,4 @@ Route::group([
 ], function () {
     Route::resource('audio', 'AudioController', ['only' => ['index', 'store']]);
     Route::resource('listConvert', 'ListConvertController');
-    Route::delete('listConvert/{id}/destroy', [
-        'uses' => 'ListConvertController@destroy',
-        'as' => 'listConvert.destroy',
-    ]);
 });

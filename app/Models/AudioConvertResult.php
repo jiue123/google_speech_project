@@ -18,4 +18,13 @@ class AudioConvertResult extends Model
     {
         return $this->belongsTo(AudioFile::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function(AudioConvertResult $audioConvertResult) {
+            $audioConvertResult->audioFile()->delete();
+        });
+    }
 }
