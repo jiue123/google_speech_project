@@ -20,25 +20,40 @@ class ListConvertController extends Controller
      */
     public function index(Request $request)
     {
+        $sort = $request->has(['sort']) ? $request['sort'] : 'desc';
         $totalItems = $this->totalItems;
+
         if ($request->has(['dateFrom', 'dateTo'])) {
             $input = $request->only(['dateFrom', 'dateTo']);
-            $input['dateFrom'] = $input['dateFrom'] == '' ? Carbon::now()->subYears(10) : $input['dateFrom'];
-            $input['dateTo'] = $input['dateTo'] == '' ? Carbon::now()->addYears(10) : $input['dateTo'];
+            $dateFrom = $input['dateFrom'];
+            $dateTo = $input['dateTo'];
+
+            if ($input['dateFrom'] == '') {
+                $dateFrom = '';
+                $input['dateFrom'] = Carbon::now()->subYears(10);
+            }
+
+            if ($input['dateTo'] == '') {
+                $dateTo = '';
+                $input['dateTo'] = Carbon::now()->addYears(10);
+            }
 
             $data = User::find(Auth::user()->id)->audioConvertResults()
                 ->whereBetween('audio_convert_results.created_at', [$input['dateFrom'], $input['dateTo']])
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', $sort)
                 ->with('audioFile')
                 ->paginate($totalItems);
         } else {
+            $dateFrom = $dateTo = '';
             $data = User::find(Auth::user()->id)->audioConvertResults()
-                ->orderBy('created_at', 'desc')
+                ->orderBy('created_at', $sort)
                 ->with('audioFile')
                 ->paginate($totalItems);
         }
 
-        return view('layouts.list_convert.index', compact('data', 'totalItems'));
+        $nextSort = $sort == 'desc' ? 'asc' : 'desc';
+
+        return view('layouts.list_convert.index', compact('data','totalItems', 'sort', 'nextSort', 'dateFrom', 'dateTo'));
     }
 
     /**
