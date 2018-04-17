@@ -27,4 +27,7 @@ $(document).ready(() => {
   if ($('.container-result-convert').length > 0) {
     require('./components/result_convert');
   }
+  if ($('.container-real-time-convert').length > 0) {
+    require('./components/real_time_convert');
+  }
 });

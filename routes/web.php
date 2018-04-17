@@ -32,4 +32,5 @@ Route::group([
 ], function () {
     Route::resource('audio', 'AudioController', ['only' => ['index', 'store']]);
     Route::resource('listConvert', 'ListConvertController');
+    Route::resource('realTime', 'RealTimeController');
 });

@@ -52,6 +52,9 @@
                             <li @if (url()->current() === route('admin.listConvert.index')) class="active" @endif>
                                 <a href="{{route('admin.listConvert.index')}}">Results Convert</a>
                             </li>
+                            <li @if (url()->current() === route('admin.realTime.index')) class="active" @endif>
+                                <a href="{{route('admin.realTime.index')}}">Real Time Convert</a>
+                            </li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

@@ -13,14 +13,14 @@
   "dependencies": {
     "axios": "^0.17",
     "bootstrap": "^3.3.7",
-    "bootstrap-fileinput": "^4.4.7",
+    "bootstrap-fileinput": "^4.4.8",
     "bootstrap-sass": "^3.3.7",
-    "cross-env": "^5.1",
+    "cross-env": "^5.1.4",
     "datatables.net-dt": "^1.10.16",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "jquery": "^3.3.1",
-    "laravel-mix": "^2.0",
-    "lodash": "^4.17.4",
-    "vue": "^2.5.7"
+    "laravel-mix": "^2.1.11",
+    "lodash": "^4.17.5",
+    "vue": "^2.5.16"
   }
 }
