@@ -95,6 +95,9 @@
                                     <a href="javascript:void(0)">
                                         <i data-delete="{{$value->id}}" class="glyphicon glyphicon-floppy-remove"></i>
                                     </a>
+                                    <a href="{{route('admin.textAnalyze.show', ['str' => $value->result_convert])}}">
+                                        <i class="glyphicon glyphicon-indent-left"></i>
+                                    </a>
                                 </form>
                             </td>
                         </tr>
