@@ -6,7 +6,10 @@ $("#audio-input").fileinput({
   theme: "fa",
   uploadUrl: uploadUrl,
   hideThumbnailContent: true,
-  allowedFileExtensions: ['wav'],
+  allowedFileExtensions: [
+      'wav',
+      'flac'
+  ],
   showAjaxErrorDetails: false,
   ajaxSettings: {
     headers: {

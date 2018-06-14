@@ -18,4 +18,4 @@ mix.autoload({
   .extract([
     'jquery'
   ])
-  .sass('resources/assets/sass/app.scss', 'public/css');
+  .sass('resources/assets/sass/app.scss', 'public/css').version();

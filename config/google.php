@@ -20,5 +20,6 @@ return [
             'sampleRateHertz' => 16000,
             'languageCode' => 'ja-JP',
         ],
-    ]
+    ],
+    'google_storage_bucket_name' => env('STORAGE_BUCKET_NAME', 'Storage Bucket Name')
 ];
