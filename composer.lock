@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e122728d9278f1d9c33ec32af59628ff",
+    "content-hash": "851f633d21d1ba918728a5c7366ad272",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -586,6 +586,56 @@
             ],
             "description": "Cloud Speech Client for PHP",
             "time": "2018-02-26T20:57:20+00:00"
+        },
+        {
+            "name": "google/cloud-storage",
+            "version": "v1.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GoogleCloudPlatform/google-cloud-php-storage.git",
+                "reference": "7b53e44593f2d7dfad2778fb265bb085c26f7a9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GoogleCloudPlatform/google-cloud-php-storage/zipball/7b53e44593f2d7dfad2778fb265bb085c26f7a9c",
+                "reference": "7b53e44593f2d7dfad2778fb265bb085c26f7a9c",
+                "shasum": ""
+            },
+            "require": {
+                "google/cloud-core": "^1.14"
+            },
+            "require-dev": {
+                "erusev/parsedown": "^1.6",
+                "google/cloud-pubsub": "^1.0",
+                "phpdocumentor/reflection": "^3.0",
+                "phpseclib/phpseclib": "^2",
+                "phpunit/phpunit": "^4.8|^5.0",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "suggest": {
+                "google/cloud-pubsub": "May be used to register a topic to receive bucket notifications.",
+                "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
+            },
+            "type": "library",
+            "extra": {
+                "component": {
+                    "id": "cloud-storage",
+                    "target": "GoogleCloudPlatform/google-cloud-php-storage.git",
+                    "path": "Storage",
+                    "entry": "src/StorageClient.php"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Google\\Cloud\\Storage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Cloud Storage Client for PHP",
+            "time": "2018-06-12T16:51:43+00:00"
         },
         {
             "name": "google/gax",

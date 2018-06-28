@@ -139,31 +139,26 @@
 
 .customize-success {
   position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  right: 4%;
   opacity: 0;
   font-weight: bold;
-  width: 100%;
-  top: 25%;
+  min-width: 200px;
 }
 
 .animation-opacity {
   -webkit-animation-name: animation-opacity; /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 2.7s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 6s; /* Safari 4.0 - 8.0 */
   animation-name: animation-opacity;
-  animation-duration: 2.7s;
+  animation-duration: 6s;
 }
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes animation-opacity {
   from {
     opacity: 1;
-    top: 25%;
   }
   to {
     opacity: 0;
-    top: 0;
   }
 }
 
@@ -171,12 +166,14 @@
 @keyframes animation-opacity {
   from {
     opacity: 1;
-    top: 25%;
   }
   to {
     opacity: 0;
-    top: 0;
   }
+}
+
+#selectLanguage {
+  margin-bottom: 8px;
 }
 
 @media (max-width: $screen-sm-max) {

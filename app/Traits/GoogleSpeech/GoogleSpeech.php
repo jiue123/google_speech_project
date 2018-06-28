@@ -27,10 +27,14 @@ trait GoogleSpeech
     protected function googleSpeechConvert(Request $request, Model $user)
     {
         $files = $request->file('audio');
-        $arrCloudURL = $this->saveToGoogleStorage($files);
+        if (config('google.google_storage')) {
+            $arrCloudURL = $this->saveToGoogleStorage($files);
+        } else {
+            $arrCloudURL = $this->saveToCloud($files);
+        }
 
         if ($audioObj = $user->audioFiles()->create($arrCloudURL)) {
-            if ($this->convertAudio($arrCloudURL, $audioObj))
+            if ($this->convertAudio($arrCloudURL, $audioObj, $request->input('language')))
                 return true;
             return false;
         } else {
@@ -100,6 +104,7 @@ trait GoogleSpeech
             switch ($extensionFile) {
                 case 'wav':
                     $wavPath = $filePath;
+                    break;
                 case 'flac':
                     $flacPath = $filePath;
                     break;
@@ -116,7 +121,7 @@ trait GoogleSpeech
         return $audio;
     }
 
-    protected function convertAudio(array $arrCloudURL, $audioObj = '')
+    protected function convertAudio(array $arrCloudURL, $audioObj = '', $language = '')
     {
         $str = '';
         $transcript = [];
@@ -134,6 +139,7 @@ trait GoogleSpeech
                 $options = config('google.google_speech_options_convert.flac');
                 break;
         }
+        $options['languageCode'] = $language;
 
 
         if ($this->saveType == $this->saveToCloud) {

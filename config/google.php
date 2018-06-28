@@ -13,13 +13,13 @@ return [
         'wav' => [
             'encoding' => 'MULAW',
             'sampleRateHertz' => 8000,
-            'languageCode' => 'ja-JP',
         ],
         'flac' =>[
             'encoding' => 'FLAC',
             'sampleRateHertz' => 16000,
-            'languageCode' => 'ja-JP',
         ],
     ],
-    'google_storage_bucket_name' => env('STORAGE_BUCKET_NAME', 'Storage Bucket Name')
+    'google_storage_bucket_name' => env('STORAGE_BUCKET_NAME', 'Storage Bucket Name'),
+    'google_storage' => env('USE_GOOGLE_STORAGE', false),
+    'google_storage_bucket_url' => env('STORAGE_BUCKET_URL', '')
 ];

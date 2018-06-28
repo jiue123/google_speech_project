@@ -15,5 +15,18 @@ $("#audio-input").fileinput({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  }
+  },
+  uploadExtraData : function () {
+    var obj = {};
+    obj['language'] = $('#selectLanguage :selected').val();
+    return obj;
+  },
+}).on('filepreupload', function(event, data, previewId, index) {
+    if (!data.extra.language) {
+        return {
+            error: 'Please select the language format of audio!',
+        };
+    }
+}).on('fileuploaded', function(event, data, previewId, index) {
+    $('#selectLanguage').prop('selectedIndex', 0);
 });

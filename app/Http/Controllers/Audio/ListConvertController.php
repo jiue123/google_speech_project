@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use App\Models\AudioConvertResult;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\GoogleSpeech\GoogleSpeech;
 
 class ListConvertController extends Controller
 {
+    use GoogleSpeech;
     public $totalItems = 10;
     /**
      * Display a listing of the resource.
@@ -128,12 +130,24 @@ class ListConvertController extends Controller
     public function destroy($id)
     {
         $data = AudioConvertResult::find($id)->load('audioFile');
-        if (Storage::delete($data->audioFile->path)) {
-            $data->delete();
-            return redirect()->route('admin.listConvert.index', $_GET)->with('message', [
-                'value' => 'Delete Success!',
-                'type' => 'success',
-            ]);
+
+        if (config('google.google_storage')) {
+            $storage = $this->googleStorageClient();
+            $delObject = function ($url) use ($storage) {
+                $object = $storage->bucket(config('google.google_storage_bucket_name'))->object($url)->delete();
+            };
+
+            if (($url = $data->audioFile->path) !== '') $delObject($url);
+            if (($url = $data->audioFile->path_flac) !== '') $delObject($url);
+        } else {
+            if (($url = $data->audioFile->path) !== '') Storage::delete($url);
+            if (($url = $data->audioFile->path_flac) !== '') Storage::delete($url);
         }
+
+        $data->delete();
+        return redirect()->route('admin.listConvert.index', $_GET)->with('message', [
+            'value' => 'Delete Success!',
+            'type' => 'success',
+        ]);
     }
 }

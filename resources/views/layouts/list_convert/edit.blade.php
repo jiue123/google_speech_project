@@ -2,7 +2,18 @@
 
 @section('content')
     @php
-        $cloudPath = config('filesystems.disks.s3.bucket_url');
+        if (config('google.google_storage')) {
+            $cloudPath = config('google.google_storage_bucket_url') . config('google.google_storage_bucket_name') . '/';
+        } else {
+            switch (config('filesystems.default')) {
+                case 's3':
+                    $cloudPath = config('filesystems.disks.azure.blob_service_url') . config('filesystems.disks.azure.container') . '/';
+                    break;
+                case 'azure':
+                    $cloudPath = config('filesystems.disks.s3.bucket_url');
+                    break;
+            }
+        }
     @endphp
     @include('partials.alert')
     <div class="container container-upload container-result-convert-edit">
