@@ -28,7 +28,7 @@ Append the below content to the end of host file for assigning domain to local i
 (For Mac the file is located in /etc/hosts)
 > ``127.0.0.1 audio.local``
 
-##Step 1: Config ``laradock``
+## Step 1: Config ``laradock``
 
 Go to the folder ``laradock_customized``.
 
@@ -51,7 +51,7 @@ Inside folder ``laradock_customized`` run command:
 
 Use command ``docker ps -a`` to check if container ``mysql`` and ``nginx`` is running or not. If running it's ok.
 
-##Step 2: Config google-speech project
+## Step 2: Config google-speech project
 
 Go to the folder ``google_speech_project``.
 
@@ -100,7 +100,7 @@ Run command:
 >
 > ``npm run dev``
 
-##Step 3 Enable google services and create service account key
+## Step 3 Enable google services and create service account key
 
 ### #Step 3.1 Enable services needed
 
