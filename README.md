@@ -192,7 +192,7 @@ If use ``s3(AWS)`` or ``Blob(Azure)`` must set ``USE_GOOGLE_STORAGE`` by ``false
 
  - But i recommend using the ``google storage`` service because with longer audio more than 1 minutes you must use 
  ``Google Cloud Storage objects`` as input.
- - In this project just support convert speech to text with audio file with format ``.wav (8000 Hz)`` and ``.flac(16000 Hz)``
+ - In this project just support convert speech to text with audio file with format ``.wav(8000 Hz)`` and ``.flac(16000 Hz)``
 
 You can find out more formats for audio file in link  [AudioEncoding](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/RecognitionConfig#AudioEncoding)
 

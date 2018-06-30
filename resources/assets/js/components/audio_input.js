@@ -24,7 +24,7 @@ $("#audio-input").fileinput({
 }).on('filepreupload', function(event, data, previewId, index) {
     if (!data.extra.language) {
         return {
-            error: 'Please select the language format of audio!',
+            message: data.filenames[0] + ': Please select the language format of audio!',
         };
     }
 }).on('fileuploaded', function(event, data, previewId, index) {
