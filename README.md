@@ -188,7 +188,7 @@ pass: ``secret``
 >
 > ``FILESYSTEM_DRIVER=azure``
 
-if use ``s3(AWS)`` or ``Blob(Azure)`` must set ``USE_GOOGLE_STORAGE`` by ``true`` or blank.
+if use ``s3(AWS)`` or ``Blob(Azure)`` must set ``USE_GOOGLE_STORAGE`` by ``false`` or blank.
 
  - But i recommend using the ``google storage`` service because with longer audio more than 1 minutes you must use 
  ``Google Cloud Storage objects`` as input.
