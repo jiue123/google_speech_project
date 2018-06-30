@@ -157,6 +157,10 @@ Set value for ``STORAGE_BUCKET_URL``
 # Test
 Open browser and type ``http://audio.local`` to see the result.
 
+user: ``admin@gmail.com``
+
+pass: ``secret``
+
 # Note
  - This project have storage service ``s3(AWS)`` and ``Blob(Azure)``. You can config for use the services in file ``.env`` 
  inside folder ``google_speech_project``
@@ -183,6 +187,8 @@ Open browser and type ``http://audio.local`` to see the result.
 > \#With Blob service
 >
 > ``FILESYSTEM_DRIVER=azure``
+
+if use ``s3(AWS)`` or ``Blob(Azure)`` must set ``USE_GOOGLE_STORAGE`` by ``true`` or blank.
 
  - But i recommend using the ``google storage`` service because with longer audio more than 1 minutes you must use 
  ``Google Cloud Storage objects`` as input.
