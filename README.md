@@ -164,7 +164,7 @@ pass: ``secret``
 # Note
  - This project have storage service ``s3(AWS)`` and ``Blob(Azure)``. You can config for use the services in file ``.env`` 
  inside folder ``google_speech_project``
- ```
+ ```sh
     FILESYSTEM_DRIVER=
     
     #Microsoft Azure
@@ -188,7 +188,24 @@ pass: ``secret``
 >
 > ``FILESYSTEM_DRIVER=azure``
 
-if use ``s3(AWS)`` or ``Blob(Azure)`` must set ``USE_GOOGLE_STORAGE`` by ``false`` or blank.
+If use ``s3(AWS)`` or ``Blob(Azure)`` must set ``USE_GOOGLE_STORAGE`` by ``false`` or blank.
 
  - But i recommend using the ``google storage`` service because with longer audio more than 1 minutes you must use 
  ``Google Cloud Storage objects`` as input.
+ - In this project just support convert speech to text with audio file with format ``.wav (8000 Hz)`` and ``.flac(16000 Hz)``
+
+You can find out more formats for audio file in link  [AudioEncoding](https://cloud.google.com/speech-to-text/docs/reference/rest/v1/RecognitionConfig#AudioEncoding)
+
+Add the format you want into ``google_speech_project/config/google.php``.
+```sh
+google_speech_options_convert' => [
+    'wav' => [
+        'encoding' => 'MULAW',
+        'sampleRateHertz' => 8000,
+    ],
+    'flac' =>[
+        'encoding' => 'FLAC',
+        'sampleRateHertz' => 16000,
+    ],
+]
+```
